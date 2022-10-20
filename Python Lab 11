@@ -1,0 +1,46 @@
+# Name: Jeremiah Gadingan
+# Date: 5/4
+# Title: Lab11 –Tuples, Sets, and Dictionaries
+# Description: This program Write a program that reads an unspecified number
+# of integers and finds the ones that have the most occurrences. 
+
+#!/usr/bin/env python3
+#enter user to iput integers and split the list 
+num = list(map(int, input("Enter integers sepearated by a space: ").split()))
+#dictionary
+occured = {}
+#set a counter
+maxcount = 0
+
+#for loop to add to max mount when a number is not occured,
+#reassigns the max  count if a count exceeds the max count
+for x in num:
+        if x not in occured.keys():
+            occured[x] = num.count(x)
+            if occured[x]>maxcount:
+                maxcount = occured[x]
+print("Numbers that have the most occurences: ")
+#for loop that shows all the max counted variables
+for x in occured.keys():
+    if occured[x] == maxcount:
+        print(x, end=" ")
+
+vowels=0
+consonants=0
+
+#askes the user to input a sentence converts it to lowercase for continuity 
+sentence = input("Enter a sentence: ").lower()     
+
+#loop checks each element in the string
+#if an element fits the criteria of a vowel adds 1 to vowels
+#if an element fits the criteria for a constant adds 1 to constant
+for a in range(0,len(sentence)):
+    if sentence[a] in ('a',"e","i","o","u"):
+        vowels = vowels + 1;
+      
+    elif (sentence[a] >= 'a' and sentence[a] <= 'z'):
+        consonants = consonants + 1;
+
+#print out the vowels and constants
+print("Vowels occured:", vowels)
+print("Consonants occured:", consonants)
