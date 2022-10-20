@@ -1,0 +1,92 @@
+# Name: Jeremiah Gadingan
+# Date: 4/3 (the day you have lab)  
+# Title: Lab7 – task: Objects and Classes
+# Description: this Python code creates two Rectangle objects—one with width 4 
+# and height 40 and the other with width 3.5 and height 35.7. Display the width, 
+# height, area, and perimeter of each rectangle in this order.
+#!/usr/bin/env python3 
+
+class Rectangle:
+      # Construct a circle object
+      def __init__(self, width = 1, height = 2):
+            self.width = width
+            self.height = height
+
+      def getArea(self):
+            return self.width * self.height
+
+      def getPerimeter(self):
+            return 2 * (self.width * self.height)
+
+rectangleOne = Rectangle(4, 40)
+rectangleTwo = Rectangle(3.5, 35.7)
+print("The width, height, area, and perimeter of the first rectangle are: ")
+print(rectangleOne.width, ",", rectangleOne.height, ",", rectangleOne.getArea(), ",", rectangleOne.getPerimeter())
+print("The width, height, area, and perimeter of the second rectangle are: ")
+print(rectangleTwo.width, ",", rectangleTwo.height, ",", rectangleTwo.getArea(), ",", rectangleTwo.getPerimeter())
+
+
+# Name: Jeremiah Gadingan
+# Date: 4/3 (the day you have lab)  
+# Title: Lab7 – task: Objects and Classes
+# Description: this Python code creates a Stock object with the stock symbol INTC, 
+# the name Intel Corporation, the previous closing price of 20.5, and the new 
+# current price of 20.35, and display the price-change percentage.
+#!/usr/bin/env python3 
+
+#stock class
+class Stock:
+        #private cpmstrictpr c;ass
+        def __init__(self, symbol, name, previousClosingPrice, currentPrice):
+            #private data fields for symbol name closingprice and current closing price 
+            self.symbol = symbol
+            self.name = name 
+            self.previousClosingPrice = previousClosingPrice
+            self.currentPrice = currentPrice
+
+#set all the get methods
+        def getname(self):
+            return self.name
+        def getsymbol(self):
+            return self.symbol
+        def getpreviousClosingPrice(self):
+            return self.previousClosingPrice
+        def getcurrentPrice(self):
+            return self.currentPrice
+        def getChangePercent(self):
+            return (self.currentPrice - self.previousClosingPrice) * 100 / (self.previousClosingPrice)
+
+#test program named INTC, INTEL CORPORTATION
+test = Stock("INTC", "Intel Corporation", 20.5, 20.35)
+#prints out the change in percentage
+print(test.getChangePercent())
+
+# Name: Jeremiah Gadingan
+# Date: 4/3 (the day you have lab)  
+# Title: Lab7 – task: Objects and Classes
+# Description: this Python code measures the execution time of adding numbers 
+#from 1 to 1,000,000.
+#!/usr/bin/env python3 
+
+import time
+
+class StopWatch:
+    def __init__(self):
+        self.startTime = time.time()
+        self.endTime = 0
+    def start(self):
+        self.startTime = time.time()
+    def stop(self):
+        self.endTime = time.time()
+    def getElapsedTime(self):
+        return self.endTime - self.startTime
+
+test = StopWatch()
+sum = 0
+
+test.start()
+for i in range(1 , 1000000 ):
+    sum += i
+test.stop()
+print(test.getElapsedTime(), "milliseconds")
+
