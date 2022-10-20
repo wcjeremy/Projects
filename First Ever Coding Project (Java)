@@ -1,0 +1,35 @@
+//Jeremiah Gadingan
+//Introduction
+//This program writes out my name,
+//favorite poem, heartrate,
+//age, and favorite number calculation
+
+public class Introduction {
+ public static void main(String[] args) {
+
+ 	double heartRate;
+ 	int age;
+ 	double favoriteNumber;
+ 	favoriteNumber = 12345679 * 7 * 9;
+ 	age = 19;
+ 	heartRate = 220 - age * .60;
+
+ 	//Display name
+ 	System.out.println("My name is Jeremiah Gadingan");
+
+ 	//Display Quote
+ 	System.out.println("");
+ 	System.out.println("Beauty of whatever kind,");
+ 	System.out.println("in its supreme development");
+	System.out.println("invariably excites the");
+	System.out.println("sensitive soul to tears.");
+	System.out.println("  --Edgar Allan Poe");
+    System.out.println("");
+
+    //Display age
+    System.out.println(age);
+
+    //Display heartrate
+    System.out.println(heartRate);
+	}
+}
