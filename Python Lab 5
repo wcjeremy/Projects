@@ -1,0 +1,73 @@
+# Name: Jeremiah Gadingan   
+# Date: 3/18 (the day you have lab) 
+# Title: Lab5 – loops 
+# Desription: this program reads an unspecified number of integers, determines 
+#how many positive and negative values have been read, and computes the 
+#total and average of the input values (not counting zeros). Your program ends 
+#with the input 0. Display the average as a floating-point number. 
+
+#starting with initial counters
+tol = 0
+count = -1
+pos = 0
+neg = 0
+
+#pront user to enter int or end if entered 0
+x = int(input("Enter an integer, the input ends if it is 0:"))
+
+#statment that adds to counters given the conditions
+#if x is not 0 adds the positives if x is greater than 0, vice versa to negatives
+if x != 0:
+    count = 0
+while x != 0:
+    tol += x
+    count += 1
+    if x > 0:
+        pos += 1
+    else:
+        neg += 1
+    x = int(input("Enter an integer, the input ends if it is 0:"))
+
+#if the conditions are not satisfied or 0 is entered, prints out positives,
+#negataives, total, and the average of all numbers
+else:    
+    print("The number of negatives is ", pos)
+    print("The number of negatives is ", neg)
+    print("The total is ", tol)
+    print("The average is", (tol/count))
+    
+    # Name: Jeremiah Gadingan   
+# Date: 3/18 (the day you have lab) 
+# Title: Lab5 – loops 
+# Desription: Write a program that displays, ten numbers per line, all the numbers from 
+#100 to 200 that are divisible by 5 or 6, but not both. The numbers are 
+#separated by exactly one space. 
+
+#start with initial count
+count = 0
+#in the range of 100-201 (not including 201) if x is divisible by 6 but not 5 or if
+#x is divisible by 5 but not 6
+for x in range(100, 201):
+    if ( x % 6 == 0 and x % 5 != 0) or (x % 5 == 0 and x % 6 != 0):
+        print(str(x), end=" ")
+        #add 1 to the count
+        count = count + 1
+        
+# Name: Jeremiah Gadingan   
+# Date: 3/18 (the day you have lab) 
+# Title: Lab5 – loops 
+# Desription: this program program tind the greatest common
+# divisor of two integers n1 and’ n2.
+
+a = int(input("Input an integer "))
+b = int(input("Input another integer "))
+
+#finds the min out of the two integers
+c = min(a, b)
+#sets the range from c to 0 in steps of -1
+for d in range(c, 0, -1):
+    #conditions for GCD
+    if (a % d == 0 and b % d == 0):
+        print(d, "is the greatest common divisor of", a, "and", b)
+        #breaks loop
+        break
