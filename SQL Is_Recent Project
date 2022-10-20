@@ -1,0 +1,46 @@
+--The goal of this file is to see the necessity of creating a new flag in xlob (new dataset)
+--do we need to create a new flag or pull a similar flag from a different data set
+--we are able to validate it by putting the two collumns side by side and viewing an opportunity.
+
+--dealcredit data
+WITH dc AS
+  (SELECT in_urn,
+          in_opportunity_urn,
+          in_sales_rep_corp_user_urn,
+          in_sales_rep_manager_corp_user_urn,
+          in_rep_region_hash,
+          in_is_most_recent
+  FROM prod_dynamics.in_deal_credit),
+
+--xlob dataset --
+xlob AS
+  (SELECT deal_credit_urn,
+          opportunity_id,
+          booking_owner_urn,
+          booking_owner_manager,
+          rep_region_name,
+          xlob.rep_region_hash,
+            CASE 
+            WHEN (xlob.booking_owner_urn = opp.owner_urn) 
+            AND (xlob.rep_region_hash = opp.rep_region_hash)
+            THEN TRUE
+            ELSE FALSE END AS is_recent
+  FROM gdp_sales_mp.fact_xlob_bookings as xlob LEFT JOIN prod_datacraft.opportunity AS opp
+  ON xlob.opportunity_id = opp.urn
+  WHERE merge_source = 'D365')
+
+-- validation --
+SELECT 
+dc.in_sales_rep_corp_user_urn as dc_booking_rep, 
+xlob.booking_owner_urn as xlob_booking_rep,
+dc.in_rep_region_hash dc_rep_hash,
+xlob.rep_region_hash as xlob_rep_hash, 
+opportunity_id, 
+in_urn, 
+in_is_most_recent, 
+is_recent
+FROM dc LEFT JOIN xlob
+ON xlob.opportunity_id = dc.in_opportunity_urn
+AND dc.in_urn = xlob.deal_credit_urn
+WHERE dc.in_is_most_recent <> xlob.is_recent
+AND opportunity_id = 
