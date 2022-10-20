@@ -1,0 +1,136 @@
+# Name: Jeremiah Gadingan
+# Date: 4/24 (the day you have lab)  
+# Title: Lab10 – Multidimensional Lists
+# Description: This program writes a function that returns the sum of all the elements in a specified column in a 
+# matrix 
+# !/usr/bin/env python3 
+
+# Create the sume of the elements in each column by adding the columns
+def sumColumn(m, columnIndex):#Python function
+    #initial value
+    colSum=0 
+    #adds the elements to the column sum and prints
+    for x in range(len(m)):
+        colSum=colSum+m[x][columnIndex]
+    return colSum
+
+#creates a list
+matrix=[] 
+
+#prompts the user to input the row with columns and splits the input
+for x in range(0,3):
+       #4 rows
+       row=[0]*4 
+       row[0], row[1],row[2],row[3] = [float(i) for i in input("Enter a 3-by-4 matrix row for row "+str(x)+" : ").split()]
+       matrix.append(row)
+
+for x in range(0,4):
+    #calls the header function
+    print("Sum of the elements for column "+str(x)+" is ",sumColumn(matrix,x))
+
+
+# Name: Jeremiah Gadingan
+# Date: 4/24 (the day you have lab)  
+# Title: Lab10 – Multidimensional Lists
+# Description: Write a function that sums all the numbers of the major diagonal in an n * n matrix 
+# of integers
+# !/usr/bin/env python3 
+
+def sumMajorDiagonal(m):
+    #initializer value
+    sum=0
+    #sum of each value
+    for i in range(len(m)):
+        sum+=m[i][i]
+    return sum
+
+#create a matrix
+matr=[]
+
+#since the matrix has to be 4by4 then start the rows and columns with 4
+rows=4
+cols=4
+
+#prompt the user to enter the rows and convert the numbers to add to the matrix
+for j in range(rows):
+    num=input("Enter a 4-by-4 matrix row for row " + str(j+1) + ": ")
+    item=num.split()
+    numList=[eval(x) for x in item]
+    matr.append(numList)
+
+# Print the sum of the major diagonal elements of the matrix.
+print("Sum of the elements in the major diagonal is", sumMajorDiagonal(matr))
+
+# Name: Jeremiah Gadingan
+# Date: 4/24 (the day you have lab)  
+# Title: Lab10 – Multidimensional Lists
+# Description: This program write a program that randomly fills in 0s and 1s into a 4 * 4 matrix, prints the 
+# matrix, and finds the rows and columns with the most 1s. 
+# !/usr/bin/env python3
+
+#i am going to use numpy for this program
+import numpy as np
+#initial
+n = 4
+m = 4
+
+#uses numpy to create the array
+A = np.random.randint(0,2,n*m).reshape((n,m))
+print("The matrix is: ")
+print(A)
+
+#method to calculate the maximum sum row
+def max_Row_Sum(A) :
+    S = 0
+    maxRowSum = 0
+    #creates the addition in the column array
+    for i in range(n) :
+        for j in range(m) :
+            S += A[i][j]
+        if maxRowSum < S:
+           maxRowSum = S
+        S = 0
+    return maxRowSum
+  
+#method to calculate the maximum sum column
+def max_Column_Sum(A) :
+    S = 0
+    maxColumnSum = 0
+    #creates the addition in the column array
+    for i in range(m) :
+        for j in range(n) :
+            S += A[j][i]
+        if maxColumnSum < S:
+            maxColumnSum = S
+        S = 0
+    return maxColumnSum
+largRowSum = max_Row_Sum(A)
+maxRowSum = 0
+
+#finds the row index in the array
+print("The largest row index: ")
+for i in range(n) :
+    S = 0
+    for j in range(m) :
+        S += A[i][j]
+    if maxRowSum < S:
+        maxRowSum = S
+    if S == largRowSum:
+        print(i,end=" ")
+largColSum = max_Column_Sum(A)
+maxColumnSum = 0
+
+#finds the column index in the array
+print("\nThe largest column index: ",end="")
+for i in range(m) :
+    S = 0
+    for j in range(n) :
+        S += A[j][i]
+    if maxColumnSum < S:
+        maxColumnSum = S
+    if S == largColSum:
+        print(i,end=" ")
+
+#coworker/mentor helped me with this difficult code
+    
+
