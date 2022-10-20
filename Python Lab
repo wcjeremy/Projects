@@ -1,0 +1,100 @@
+# Jeremiah Gadingan
+# Lab 13:
+# DUE 5/22
+# Files and Exception Handling
+# QUESTION ONE
+# THIS PROGRAM removes all the occurrences of a specified string from a text 
+# file.
+
+#takes the file name from user
+fileName = input("Enter a filename: ")
+#takes a string that is wanted to be removed from the text file
+remove = input("Enter the string to be removed: ") 
+
+#open the given file
+file = open(fileName) 
+#creates a brand new file that is the given file with the removed string
+newFile = open("Clear.txt", "w+")
+
+x = [remove]
+
+# this is look looks into the given file and replaces the
+# word that needs to be removed with nothing
+for i in file: 
+    for word in x:
+        i = i.replace(word, "")
+    newFile.write(i)
+
+file.close()
+newFile.close()
+#prints when operations are finished
+print("Done")
+
+
+# Jeremiah Gadingan
+# Lab 13:
+# DUE 5/22
+# Files and Exception Handling
+# QUESTION TWO
+# THIS program that will count the number of characters, words, and lines in a 
+# file. Words are separated by a white space character. Your program should prompt 
+# the user to enter a filename.
+
+#asks user to input a file 
+file = input("Enter a filename: ") 
+
+#opens the file
+fileOpen = open(file, "r+") 
+#assign the words as variable data
+data = fileOpen.read() 
+#finding the amount of characters
+numbChar = len(data) 
+print(f"{numbChar} characters")
+
+#initial counter
+numWords = 0
+# Words are separated by a white space character.
+lines = data.split() 
+
+#counts the non numeric words
+for word in lines: 
+    if not word.isnumeric():
+       numWords += 1
+print(f"{numWords} words")
+
+#initial counter
+numLines = 0
+#spliting the data into lines
+lstData = data.split("\n") 
+
+#counts number of lines
+for i in lstData:
+    if i:
+      numLines += 1
+print(f"{numLines} lines")
+
+
+# Jeremiah Gadingan
+# Lab 13:
+# DUE 5/22
+# Files and Exception Handling
+# QUESTION ONE
+# THIS program that writes 100 integers created randomly into a file. Integers are 
+#separated by a space in the file. Read the data back from the file and display the 
+# sorted data. Your program should prompt the user to enter a filename. If the file 
+# already exists, do not override it. 
+
+
+import random
+
+file = input('Enter filename:')
+
+with open(file, "w") as afile:
+    print("The 100 random integers are: ")
+    for i in range(100):
+        line = str(random.randint(1,100))
+        afile.write(line)
+        print(line, "", end='')
+
+print("\nDONE")
+
